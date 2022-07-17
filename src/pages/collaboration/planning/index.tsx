@@ -1,5 +1,8 @@
+import styles from './index.less' 
+
 function Planning() {
-    return <div>123</div>;
+    console.log(styles)
+    return <div className={styles.center}>123</div>;
 }
 
 export default Planning;

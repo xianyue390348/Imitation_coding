@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import './App.less';
 
-function App(props) {
+function App() {
   return (
     <div className="App">
       {/* App children: */}
