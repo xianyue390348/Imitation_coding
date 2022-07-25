@@ -1,6 +1,6 @@
-import moment from "moment";
-import "moment/locale/zh-cn";
 import styles from "./index.less";
+import React from 'react'
+import moment from "moment";
 
 interface DateProps {
     time: moment.Moment;
@@ -16,7 +16,7 @@ const Day: React.FC<DateProps> = (props: DateProps) => {
     for (let i = 0; i < days; i++) {
         // 补足两位的日份
         const day = time.format("DD");
-        let week: any = time.day() - 1;
+        let week: number | string | null = time.day() ;
         switch (week) {
             case 1:
                 week = '一'
@@ -48,7 +48,11 @@ const Day: React.FC<DateProps> = (props: DateProps) => {
     return (
         <div className={[styles.dayItem].join(' ')}>
             {result.map((item, index) => {
-                return <div className={[styles.dayTitle, item.active ?styles.active : null].join(' ')}><span className={styles.dayTitleWeek}>{item.week}</span><span className={styles.dayTitleDate}>{item.days}</span></div>
+                return <div key={index} className={[styles.dayTitle, index === 0 ? styles.lineLeft: null].join(' ')}>
+                  <div style={{ marginBottom: '11px' }} className={[item.active ?styles.active : null].join(' ')}>
+                    <span className={styles.dayTitleWeek}>{item.week}</span><span className={styles.dayTitleDate}>{item.days}</span>
+                  </div>
+                </div>
             })}
         </div>
     );
@@ -68,21 +72,16 @@ const Date: React.FC<DateProps> = (props: DateProps) => {
     );
 };
 
-const Calendar: React.FC = () => {
-    const monthList: Array<moment.Moment> = [];
-    // moment 设置中文
-    moment.locale("zh-cn");
-    let now = moment();
-    now.date(1)
-    // 获取最近的24个月，加入列表里.
-    now = now.add(-1, "year");
-    for (let i = 0; i < 12; i++) {
-        monthList.push(now.add(1, "M").clone());
-    }
+interface CalendarProps {
+  monthList: moment.Moment[]
+}
 
+const Calendar: React.FC<CalendarProps> = (props: CalendarProps) => {
+    const { monthList } = props
+    const allMonthDayCount = monthList.map(item => item.daysInMonth()).reduce((prev, curr) => prev + curr);
     return (
         <>
-            <div className={styles.calendar}>
+            <div className={styles.calendar} style={{width: `${allMonthDayCount * 44}px`}}>
                 {/* 月份框框 */}
                 <div className={styles.date}>
                     {monthList.map((month, index) => {

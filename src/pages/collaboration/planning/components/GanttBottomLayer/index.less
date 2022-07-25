@@ -1,0 +1,39 @@
+.ganttBottomLayerBarDay {
+  display: flex;
+  flex-direction: row;
+}
+
+.dayBarGroup {
+  display: flex;
+  flex-direction: row;
+  // 大组，用来控制底下的高度
+  position: relative;
+  // 总高度 - 上面3个44px * 2 + 48 - 8 滚动条高度
+  height: calc( 100vh -  44px * 3 - 4px - 20px);
+}
+
+.dayItem {
+  width: 44px;
+  height: 100%;
+  border-left: 1px solid rgba(218,223,230,.3);
+  background-color: rgb(247, 248, 250);
+}
+
+.dayItemWeekend {
+  background-color: rgb(244, 246, 248);
+}
+
+.dayItemToday {
+  position: relative;
+  &:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 2px;
+    background: rgba(0,102,255,.8);
+    opacity: .3;
+  }
+}
