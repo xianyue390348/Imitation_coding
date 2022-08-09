@@ -21,6 +21,7 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
-        '@typescript-eslint/no-non-null-assertion': 0
+        '@typescript-eslint/no-non-null-assertion': 0,
+        'no-debugger': 0
     }
 }

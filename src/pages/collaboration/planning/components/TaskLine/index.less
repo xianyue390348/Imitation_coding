@@ -1,0 +1,25 @@
+.gantt {
+    &TaskLine {
+        height: 44px;
+        width: 16060px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        &:hover {
+            background-color: var(--background-color);
+        }
+    }
+
+    &TaskWrap {
+        position: absolute;
+        top: 0;
+        padding-top: 8px;
+    }
+}
+
+.ganttRowWrap {
+    height: 16px;
+    border-radius: 3px;
+}

@@ -33,7 +33,7 @@ const Day: React.FC<DateProps> = (props: DateProps) => {
             case 5:
                 week = '五'
                 break;
-            case -1:
+            case 6:
                 week = '六'
                 break;
             case 0:

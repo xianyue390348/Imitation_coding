@@ -12,12 +12,12 @@ function Planning() {
   const monthList: Array<moment.Moment> = [];
   // moment 设置中文
   moment.locale("zh-cn");
-  let now = moment();
-  now.date(1)
-  // 获取最近的24个月，加入列表里.
-  now = now.add(-1, "year");
+  const now = moment();
+  // 获取最近的12个月，加入列表里. now设置为今年年初
+  now.set("month", 0);
   for (let i = 0; i < 12; i++) {
-    monthList.push(now.add(1, "M").clone());
+    monthList.push(now.clone());
+    now.add(1, "M")
   }
 
   return (
