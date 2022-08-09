@@ -7,6 +7,8 @@ import React from "react";
 import Gantt from "./components/Gantt/index";
 import moment from "moment";
 import "moment/locale/zh-cn";
+import { inject } from "mobx-react";
+
 
 function Planning() {
   const monthList: Array<moment.Moment> = [];
@@ -29,4 +31,4 @@ function Planning() {
   );
 }
 
-export default Planning;
+export default inject('appStore')(Planning);
